@@ -9,7 +9,7 @@ from datetime import datetime
 
 
 def check_freedelivery(o_custkey, o_totalprice, o_orderdate):
-    threshold = 150000
+    threshold = 200000
     total_spent = calc_totalspent(o_custkey, o_totalprice, o_orderdate)
     return (total_spent + float(o_totalprice) >= threshold)
         
@@ -56,5 +56,5 @@ for index in range(df.shape[0]):
     req.post(url, json=post_object, headers={'Content-type':'application/json'})
     print("Order", index+1, "ingested successfully!")
 
-#Threshold - 130000
+#Threshold - 200000
 print("Data Ingestion completed successfully...")
