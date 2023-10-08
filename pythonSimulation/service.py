@@ -23,11 +23,7 @@ class Block:
 
 class Blockchain:
     # difficulty of our PoW algorithm
-<<<<<<< HEAD
     difficulty = 2
-=======
-    difficulty = 3
->>>>>>> 7c9253eaf85bc9b9e249395df98e431a5da2815b
 
     def __init__(self):
         self.unconfirmed_transactions = []
@@ -174,7 +170,6 @@ def get_chain():
     chain_data = []
     for block in blockchain.chain:
         chain_data.append(block.__dict__)
-<<<<<<< HEAD
 
     with open('chain.json', 'w') as file:
         json.dump({"length": len(chain_data),
@@ -182,8 +177,6 @@ def get_chain():
                        "peers": list(peers)}, file)
         
 
-=======
->>>>>>> 7c9253eaf85bc9b9e249395df98e431a5da2815b
     return json.dumps({"length": len(chain_data),
                        "chain": chain_data,
                        "peers": list(peers)})
@@ -297,11 +290,7 @@ def verify_and_add_block():
 @app.route('/pending_tx')
 def get_pending_tx():
     return json.dumps(blockchain.unconfirmed_transactions)
-<<<<<<< HEAD
     
-=======
-
->>>>>>> 7c9253eaf85bc9b9e249395df98e431a5da2815b
 
 def consensus():
     """

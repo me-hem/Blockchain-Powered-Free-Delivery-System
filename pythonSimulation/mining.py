@@ -1,16 +1,7 @@
-<<<<<<< HEAD
 import requests as req
 import time
 
 url = "http://127.0.0.1:8000/mine"
-=======
-import sys
-import requests as req
-import time
-
-port = sys.argv[1]
-url = "http://127.0.0.1:8080/mine"
->>>>>>> 7c9253eaf85bc9b9e249395df98e431a5da2815b
 
 print("Mining started ")
 count = 0
