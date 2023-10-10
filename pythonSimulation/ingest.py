@@ -59,7 +59,6 @@ for index in range(df.shape[0]):
 
     req.post(url, json=post_object, headers={'Content-type':'application/json'})
     print("Order", index+1, "ingested successfully!")
-    time.sleep(1)
 
 #Threshold - 200000
 print("Data Ingestion completed successfully...")
