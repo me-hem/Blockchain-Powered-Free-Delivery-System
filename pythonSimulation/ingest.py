@@ -24,13 +24,13 @@ def calc_totalspent(o_custkey, o_totalprice, o_orderdate):
             print("inside tx", tx_no)
             
             tx_date = blockchain[block_no]["transactions"][tx_no]["o_orderdate"]
-            spent_time = abs(int(o_orderdate[:4]) - int(tx_date[:4]))*365 + abs(int(o_orderdate[5:7]) - int(tx_date[5:7]))*30 + abs(int(o_orderdate[8:]) - int(tx_date[8:]))
-            print(spent_time)
+            spent_time = int(o_orderdate[:4]) - int(tx_date[:4]) + int(o_orderdate[5:7])/12 - int(tx_date[5:7])/12 + int(o_orderdate[8:])/365 - int(tx_date[8:])/365
+            
             tx_price = float(blockchain[block_no]["transactions"][tx_no]["o_totalprice"])
             tx_custkey = blockchain[block_no]["transactions"][tx_no]["o_custkey"]
             tx_freedelivery = bool(blockchain[block_no]["transactions"][tx_no]["o_freedelivery"])
             
-            if spent_time <= 365:
+            if spent_time <= 1:
                 if o_custkey == tx_custkey:
                     if tx_freedelivery == False:
                         total_spent += tx_price
@@ -46,7 +46,7 @@ def calc_totalspent(o_custkey, o_totalprice, o_orderdate):
 
 url = "http://127.0.0.1:8000/new_transaction"
 
-df = pd.read_csv("/home/ethereum/Downloads/ResearchData/data/order1M.csv")
+df = pd.read_csv("/home/ethereum/Downloads/ResearchData/data/order10k.csv")
 
 for index in range(df.shape[0]):
     post_object = {
@@ -55,7 +55,7 @@ for index in range(df.shape[0]):
     "o_totalprice": str(df.iloc[index, 2]),
     "o_orderdate": str(df.iloc[index, 3])
     }
-    #post_object["o_freedelivery"] = str(check_freedelivery(post_object["o_custkey"], post_object["o_totalprice"], post_object["o_orderdate"]))
+    post_object["o_freedelivery"] = str(check_freedelivery(post_object["o_custkey"], post_object["o_totalprice"], post_object["o_orderdate"]))
 
     req.post(url, json=post_object, headers={'Content-type':'application/json'})
     print("Order", index+1, "ingested successfully!")
