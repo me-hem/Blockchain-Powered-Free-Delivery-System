@@ -23,7 +23,7 @@ class Block:
 
 class Blockchain:
     # difficulty of our PoW algorithm
-    difficulty = 2
+    difficulty = 1
 
     def __init__(self):
         self.unconfirmed_transactions = []
@@ -171,7 +171,7 @@ def get_chain():
     for block in blockchain.chain:
         chain_data.append(block.__dict__)
 
-    with open('chain.json', 'w') as file:
+    with open('chain10k.json', 'w') as file:
         json.dump({"length": len(chain_data),
                        "chain": chain_data,
                        "peers": list(peers)}, file)
