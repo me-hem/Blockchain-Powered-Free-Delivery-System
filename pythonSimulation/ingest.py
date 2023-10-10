@@ -46,7 +46,7 @@ def calc_totalspent(o_custkey, o_totalprice, o_orderdate):
 
 url = "http://127.0.0.1:8000/new_transaction"
 
-df = pd.read_csv("/home/ethereum/Downloads/ResearchData/data/order100k.csv")
+df = pd.read_csv("/home/ethereum/Downloads/ResearchData/data/order1M.csv")
 
 for index in range(df.shape[0]):
     post_object = {
