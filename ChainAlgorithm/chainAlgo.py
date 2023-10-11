@@ -1,5 +1,5 @@
 import pandas as pd
-df = pd.read_csv("/home/ethereum/Downloads/check.csv")
+df = pd.read_csv("/home/ethereum/Downloads/ResearchData/data/order10k.csv")
 
 column = []
 for i in range(df.shape[0]):
@@ -37,10 +37,11 @@ def calc_total(o_custkey, o_orderdate, chain):
     return total_spent
 
 
-total = []
-rewards = []
 for tx_no in range(df.shape[0]):
     total_spent = calc_total(df.iloc[tx_no, 1], df.iloc[tx_no, 3], df.iloc[:tx_no])
     print(total_spent, end= "=>")
-    rewards.append(check_freedelivery(total_spent, df.iloc[tx_no, 2]))
     print(check_freedelivery(total_spent, df.iloc[tx_no, 2]))
+    df.iloc[tx_no, 4] = check_freedelivery(total_spent, df.iloc[tx_no, 2])
+
+
+df.to_csv("chainReward10k.csv")
