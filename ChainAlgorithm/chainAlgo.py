@@ -1,5 +1,5 @@
 import pandas as pd
-df = pd.read_csv("/home/ethereum/Downloads/ResearchData/data/order50k.csv")
+df = pd.read_csv("/home/ethereum/Downloads/ResearchData/data/order1M.csv")
 
 column = []
 for i in range(df.shape[0]):
@@ -44,4 +44,4 @@ for tx_no in range(df.shape[0]):
     df.iloc[tx_no, 4] = check_freedelivery(total_spent, df.iloc[tx_no, 2])
 
 
-df.to_csv("chainReward50k.csv")
+df.to_csv("chainReward1M.csv")
