@@ -1,10 +1,9 @@
 
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
-
+pragma solidity ^0.8.20;
+import "@openzeppelin/contracts/utils/Strings.sol";
 contract HIShip{
 
-uint length;
 struct Order {
     string o_orderkey;
     string o_custkey;
@@ -15,42 +14,50 @@ struct Order {
 
 Order[] public Orders;
 
-function Genesis() public view{
+function Genesis() public returns(Order[] memory) {
 Order  memory order;
-order.o_orderkey = "000";
+order.o_orderkey = "0";
 order.o_custkey = "000";
 order.o_itemkey = "000";
 order.o_totalprice = 0;
 order.timestamp = block.timestamp;
 order.o_freedelivery = false;
 
-Append(order);
+Orders.push(order);
+return Orders;
 
 }
 
-function Buy(string memory o_custkey, string memory o_itemkey, uint o_totalprice) public view returns(Order memory){
+function Buy(string memory o_custkey, string memory o_itemkey, uint o_totalprice) public returns(Order[] memory){
 Order  memory order;
-order.o_orderkey = "0";
+order.o_orderkey = Strings.toString(Orders.length);
 order.o_custkey = o_custkey;
 order.o_itemkey = o_itemkey;
 order.o_totalprice = o_totalprice;
 order.o_freedelivery = Check(order.o_custkey, order.o_totalprice, order.timestamp);
 order.timestamp = block.timestamp;
-return(order);
-}
 
-
-function Check(string memory o_custkey, uint o_totalprice, uint timestamp) public pure returns(bool){
-
-}
-
-
-
-function Append(Order memory order) public {
 Orders.push(order);
+return Orders;
 }
+
+
+function Check(string memory o_custkey, uint o_totalprice, uint timestamp) private view returns(bool){
+  uint total = o_totalprice;
+  for(uint i=Orders.length-1; i > 0; i--){
+    if((timestamp - Orders[i].timestamp) <= 120){
+      if(keccak256(bytes(o_custkey)) == keccak256(bytes(Orders[i].o_custkey))){
+            if(Orders[i].o_freedelivery == false)
+                total += Orders[i].o_totalprice;
+            else
+                return total >= 499;
+      }
+    }
+    else 
+        return total >= 499;
+  }
+  return total >= 499; 
 }
 
 
-
-
+}
