@@ -34,8 +34,8 @@ order.o_orderkey = Strings.toString(Orders.length);
 order.o_custkey = o_custkey;
 order.o_itemkey = o_itemkey;
 order.o_totalprice = o_totalprice;
-order.o_freedelivery = Check(order.o_custkey, order.o_totalprice, order.timestamp);
 order.timestamp = block.timestamp;
+order.o_freedelivery = Check(order.o_custkey, order.o_totalprice, order.timestamp);
 
 Orders.push(order);
 return Orders;
