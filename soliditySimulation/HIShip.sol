@@ -17,8 +17,8 @@ Order[] public Orders;
 function Genesis() public returns(Order[] memory) {
 Order  memory order;
 order.o_orderkey = "0";
-order.o_custkey = "000";
-order.o_itemkey = "000";
+order.o_custkey = "C000";
+order.o_itemkey = "I0000";
 order.o_totalprice = 0;
 order.timestamp = block.timestamp;
 order.o_freedelivery = false;
