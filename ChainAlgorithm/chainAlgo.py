@@ -43,7 +43,7 @@ def calc_total(o_custkey, o_orderdate, chain):
 
 for tx_no in range(df.shape[0]):
     total_spent = calc_total(df.iloc[tx_no, 1], df.iloc[tx_no, 3], df.iloc[:tx_no])
-    print(total_spent, end= "=>")
+    print(tx_no,":",total_spent, end= "=>")
     print(check_freedelivery(total_spent, df.iloc[tx_no, 2]))
     df.iloc[tx_no, 4] = check_freedelivery(total_spent, df.iloc[tx_no, 2])
 
