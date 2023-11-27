@@ -1,6 +1,10 @@
 import pandas as pd
-df = pd.read_csv("/home/ethereum/Downloads/ResearchData/data/order1M.csv")
+import json
+import time
 
+df = pd.read_csv("/home/blockchain/Blockchain-Powered-Free-Delivery-System-master/Data/order100k.csv")
+
+start_time = time.perf_counter()
 column = []
 for i in range(df.shape[0]):
     column.append("no")
@@ -45,3 +49,15 @@ for tx_no in range(df.shape[0]):
 
 
 df.to_csv("chainReward1M.csv")
+
+end_time = time.perf_counter()
+
+processing_time = end_time - start_time
+with open("log.json") as file:
+    data = json.load(file)
+    
+data["100K - chain"] = processing_time
+
+with open("log.json", w) as file:
+    json.dump(data, file)
+    
