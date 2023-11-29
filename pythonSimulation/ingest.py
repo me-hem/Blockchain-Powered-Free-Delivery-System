@@ -12,13 +12,15 @@ from datetime import datetime
 def check_freedelivery(o_custkey, o_totalprice, o_orderdate):
     threshold = 200000
     total_spent = calc_totalspent(o_custkey, o_totalprice, o_orderdate)
-    return (total_spent + float(o_totalprice) >= threshold)
-
+    if (total_spent + float(o_totalprice) >= threshold):
+        return "yes"
+    else:
+        return "no"
 
 # Function to calculate total spent by a customer before a specific order date
 def calc_totalspent(o_custkey, o_totalprice, o_orderdate):
     blockchain = req.get("http://127.0.0.1:8000/chain").json()["chain"]
-    total_spent, flag = 0.0, 0
+    total_spent = 0
     
     for block_no in range(len(blockchain)-1, 0, -1):
         for tx_no in range(len(blockchain[block_no]["transactions"])-1, -1, -1):            
@@ -27,12 +29,12 @@ def calc_totalspent(o_custkey, o_totalprice, o_orderdate):
             
             tx_price = float(blockchain[block_no]["transactions"][tx_no]["o_totalprice"])
             tx_custkey = blockchain[block_no]["transactions"][tx_no]["o_custkey"]
-            tx_freedelivery = bool(blockchain[block_no]["transactions"][tx_no]["o_freedelivery"])
+            tx_freedelivery = str(blockchain[block_no]["transactions"][tx_no]["o_freedelivery"])
             
             # Check if the transaction is within 1 year and matches the customer and does not have free delivery
             if spent_time <= 1:
                 if o_custkey == tx_custkey:
-                    if tx_freedelivery == False:
+                    if tx_freedelivery == "no":
                         total_spent += tx_price
                     else:
                         return total_spent
