@@ -3,7 +3,7 @@ import json
 import time
 
 # Load the CSV file into a Pandas DataFrame
-df = pd.read_csv("/home/blockchain/Blockchain-Powered-Free-Delivery-System-master/Data/order100k.csv")
+df = pd.read_csv("../TestData/order10k.csv")
 
 # Initialize a new column with default value "no"
 start_time = time.perf_counter()
@@ -52,7 +52,7 @@ for tx_no in range(df.shape[0]):
     df.iloc[tx_no, 4] = check_freedelivery(total_spent, df.iloc[tx_no, 2])
 
 # Save the DataFrame to a CSV file
-df.to_csv("chainReward1M.csv")
+df.to_csv("chainReward10K.csv")
 
 end_time = time.perf_counter()
 
@@ -60,8 +60,8 @@ processing_time = end_time - start_time
 with open("log.json") as file:
     data = json.load(file)
 
-data["100K - chain"] = processing_time
+data["10K - HIShip"] = processing_time
 
-# Corrected a typo in the mode used to open the file (changed 'w' to 'w+')
-with open("log.json", 'w+') as file:
+# Save the updated log data to the JSON file
+with open("log.json", 'w') as file:
     json.dump(data, file)

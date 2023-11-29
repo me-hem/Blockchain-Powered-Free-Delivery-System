@@ -45,7 +45,7 @@ def calc_totalspent(o_custkey, o_totalprice, o_orderdate):
 url = "http://127.0.0.1:8000/new_transaction"
 
 # Read data from a CSV file into a Pandas DataFrame
-df = pd.read_csv("/home/ethereum/Downloads/ResearchData/data/order10k.csv")
+df = pd.read_csv("../TestData/order10k.csv")
 
 # Iterate through each row in the DataFrame to post transactions
 for index in range(df.shape[0]):
