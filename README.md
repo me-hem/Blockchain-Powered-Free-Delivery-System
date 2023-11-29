@@ -12,7 +12,7 @@ The emergence of online shopping was driven by the objective of delivering consu
 
 ### HIShip Algorithm
 1. Overview
-  * The HIShip algorithm, implemented in Python using Pandas, introduces a data-driven approach to reward free delivery in an order system. Leveraging a CSV file (order10k.csv) as a data source, the algorithm initializes a DataFrame, incorporating a new "o_freedelivery" column.
+  * The HIShip algorithm, implemented in Python using Pandas, introduces a data-driven approach to reward free delivery. Leveraging a CSV file (order10k.csv) as a data source, the algorithm initializes a DataFrame, incorporating a new "o_freedelivery" column.
   *  The core logic unfolds in two main functions: check_freedelivery assesses eligibility based on total spending, while calc_total calculates a customer's expenditure within a one-year timeframe before a specific order date.
   *  A systematic loop processes each transaction in the DataFrame, dynamically updating the "o_freedelivery" column. The results are then stored in a new CSV file (chainReward10K.csv). The algorithm's processing time is logged and appended to a JSON log file (log.json), providing insights into its performance across 10K to 500K transactions.
 
