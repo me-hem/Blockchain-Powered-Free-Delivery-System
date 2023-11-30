@@ -52,8 +52,7 @@ with open("backtrack_log10K.json") as back_file:
 # Loop through each row in the DataFrame to calculate total spent and check free delivery eligibility
 for tx_no in range(df.shape[0]):
     total_spent, backtrack_count = calc_total(df.iloc[tx_no, 1], df.iloc[tx_no, 3], df.iloc[:tx_no])
-    print(tx_no, ":", total_spent, end="=>")
-    print(check_freedelivery(total_spent, df.iloc[tx_no, 2]))
+    print(tx_no+1, ":", total_spent, "=>", check_freedelivery(total_spent, df.iloc[tx_no, 2]), ":", backtrack_count)
     df.iloc[tx_no, 4] = check_freedelivery(total_spent, df.iloc[tx_no, 2])
     backtrack_log[str(tx_no+1)] = str(backtrack_count)
 
