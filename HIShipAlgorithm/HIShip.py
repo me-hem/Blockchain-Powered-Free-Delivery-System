@@ -55,7 +55,7 @@ for tx_no in range(df.shape[0]):
     print(tx_no, ":", total_spent, end="=>")
     print(check_freedelivery(total_spent, df.iloc[tx_no, 2]))
     df.iloc[tx_no, 4] = check_freedelivery(total_spent, df.iloc[tx_no, 2])
-    backtrack_log[str(df.iloc[tx_no, 1])] = str(backtrack_count)
+    backtrack_log[str(tx_no+1)] = str(backtrack_count)
 
 # Save the DataFrame to a CSV file
 df.to_csv("chainReward10K.csv")
