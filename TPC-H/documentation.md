@@ -28,3 +28,5 @@ Run the following command to genereate dbgen and qgen file,
 
 To generate data,
 `./dbgen -s <size of dataset in Gb>`
+
+**Now you can find the data in .tbl files.**
