@@ -17,7 +17,7 @@ Open makefile and update the fields as follows:
 - MACHINE =  LINUX
 - WORKLOAD =  TPCH
 
-Open tpch.d file `nano tpch.d` and Update SQL Server Macro (for SQLSERVER compatible dataset) as follows:
+Open tpcd.h file `nano tpcd.h` and Update SQL Server Macro (for SQLSERVER compatible dataset) as follows:
 - GEN_QUERY_PLAN from "set showplan on\nset noexec on\ngo\n" to  "explain;"
 - START_TRAN from "begin transaction\ngo\n" to "start transaction;"
 - END_TRAN from "commit transaction\ngo\n" to "commit;"
