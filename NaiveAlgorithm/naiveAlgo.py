@@ -25,7 +25,7 @@ for i in range(df.shape[0]):
 df["free_delivery"] = free_delivery
 
 # Save the DataFrame to a CSV file
-df.to_csv("naiveReward10k.csv")
+df.to_csv("naiveReward10k.csv", index=False)
 
 # Record the end time and calculate the processing time
 end_time = time.perf_counter()
